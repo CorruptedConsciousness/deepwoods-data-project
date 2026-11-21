@@ -214,3 +214,107 @@ footer {
     font-size: 15px;
     margin-top: -8px !important;
 }
+
+/* Regional Weather Radar */
+
+#radar {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid #42634b;
+    border-radius: 16px;
+    background: rgba(22, 42, 29, 0.7);
+}
+
+#radar-map {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Radar animation controls */
+
+#radar-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+#radar-play {
+    padding: 10px 18px;
+    background: #42634b;
+    color: white;
+    border: 1px solid #709476;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#radar-play:hover {
+    background: #547c5e;
+}
+
+#radar-frame-time {
+    color: #b6d5a7;
+    font-size: 14px;
+}
+
+/* Astronomy and Daylight */
+
+#astronomy {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid #42634b;
+    border-radius: 16px;
+    background: rgba(22, 42, 29, 0.7);
+}
+
+#astronomy-data {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    #astronomy-data {
+        grid-template-columns: 1fr;
+    }
+}
+
+.moon-visual {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.moon-visual svg {
+    filter: drop-shadow(0 0 12px rgba(220, 225, 210, 0.2));
+}
+
+/* Air Quality Monitoring */
+
+#air-quality {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid #42634b;
+    border-radius: 16px;
+    background: rgba(22, 42, 29, 0.7);
+}
+
+#aqi-data {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+@media (max-width: 600px) {
+    #aqi-data {
+        grid-template-columns: 1fr;
+    }
+}

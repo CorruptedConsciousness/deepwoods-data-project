@@ -7,6 +7,10 @@
   <meta name="description" content="Deepwoods Data Project — independent wildlife observation, environmental data, and AI research from the deepwoods of Michigan.">
   <title>Deepwoods Data Project | Coming Soon</title>
   <link rel="stylesheet" href="css/style.css">
+  <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  >
 <body>
   <main>
     <div class="mark" aria-label="DDP monogram">DDP</div>
@@ -14,6 +18,11 @@
     <h1>Deepwoods<br>Data Project</h1>
     <p>Observing wildlife. Gathering environmental data. Exploring the natural world through computer vision, artificial intelligence, and open scientific inquiry.</p>
     <div class="status"><span class="dot" aria-hidden="true"></span> RESEARCH PLATFORM IN DEVELOPMENT</div>
+    <section id="astronomy">
+        <h2>Astronomy & Daylight</h2>
+        <p id="astronomy-status">Calculating astronomical conditions...</p>
+        <div id="astronomy-data"></div>
+    </section>
     <section id="weather">
         <h2>Regional Weather</h2>
         <p id="weather-status">Weather data awaiting connection...</p>
@@ -24,9 +33,33 @@
       <p id="forecast-status">Retrieving NWS forecast...</p>
       <div id="forecast-data"></div>
     </section>
+    <section id="radar">
+      <h2>Regional Weather Radar</h2>
+      <p>Live precipitation radar — Gladwin, Michigan</p>
+      <div id="radar-map"></div>
+      <div id="radar-controls">
+          <button id="radar-play" type="button">▶ Play Radar</button>
+          <span id="radar-frame-time">Latest radar frame</span>
+     </div>
+      <p id="radar-status">Loading radar imagery...</p>
+    </section>
+    <section id="air-quality">
+        <h2>Air Quality Index</h2>
+        <p id="aqi-status">
+            EPA AirNow observations — Mount Pleasant, Michigan
+        </p>
+        <div id="aqi-data">
+            Awaiting air quality data...
+        </div>
+    </section>
     <footer>© 2026 Deepwoods Data Project · From the deepwoods of Michigan</footer>
   </main>
-  <script src="js/weather.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/suncalc@1.9.0/suncalc.js"></script>
+<script src="js/astronomy.js" defer></script>
+<script src="js/weather.js" defer></script>
 <script src="js/forecast.js" defer></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/radar.js" defer></script>
+<script src="js/aqi.js" defer></script>
 </body>
 </html>
