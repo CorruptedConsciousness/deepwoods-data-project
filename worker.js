@@ -40,11 +40,14 @@ export default {
                 });
 
             } catch (error) {
-                console.error("DDP AirNow error:", {
-                    name: error.name,
-                    message: error.message,
-                    stack: error.stack
-    });
+                console.error(
+                    "DDP AirNow diagnostic:",
+                     JSON.stringify({
+                         name: error.name,
+                        message: error.message,
+                         cause: error.cause?.message ?? null
+                    })
+        );
 
                 return Response.json(
                     { error: "Air quality data unavailable" },
