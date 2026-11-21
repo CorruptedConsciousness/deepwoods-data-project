@@ -3,7 +3,7 @@
   "name": "deepwoods-data-project",
   "compatibility_date": "2026-11-21",
   "assets": {
-    "directory": "./",
+    "directory": "./public",
     "not_found_handling": "404-page"
   }
 }
