@@ -22,7 +22,7 @@ export default {
 
                 airNowUrl.searchParams.set("format", "application/json");
                 airNowUrl.searchParams.set("zipcode", "48858");
-                airNowUrl.searchParams.set("API_KEY", env.AIRNOW_API_KEY);
+                airNowUrl.searchParams.set("API_KEY", env.AIRNOW_API_KEY.trim());
                 console.log(
                     "AirNow key length:",
                     env.AIRNOW_API_KEY.trim().length
@@ -34,7 +34,7 @@ export default {
                         "Accept": "application/json"
                     }
                 });
-                console.log("AirNow final URL:", response.url);
+                
                 console.log("AirNow redirected:", response.redirected);
                 console.log("AirNow content type:", response.headers.get("content-type"));
 
