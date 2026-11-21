@@ -46,9 +46,12 @@ export default {
                 console.log("AirNow content type:",
                     response.headers.get("content-type"));
 
-                if (rawResponse.trimStart().startsWith("<")) {
+               if (rawResponse.trimStart().startsWith("<")) {
+                    const title = rawResponse.match(/<title[^>]*>(.*?)<\/title>/is);
+
                     throw new Error(
-                        `AirNow returned HTML instead of JSON (HTTP ${response.status})`
+                        `AirNow returned HTML (HTTP ${response.status}). ` +
+                         `Page title: ${title ? title[1].trim() : "Not found"}`
                     );
                 }
 
