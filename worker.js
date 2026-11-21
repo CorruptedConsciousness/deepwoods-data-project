@@ -17,12 +17,12 @@ export default {
                 }
 
                 const airNowUrl = new URL(
-                    "https://www.airnowapi.org/aqi/observation/zipCode/zipCode/"
+                    "https://www.airnowapi.org/aqi/observation/current/zipCode/"
                 );
 
                 airNowUrl.searchParams.set("format", "application/json");
                 airNowUrl.searchParams.set("zipCode", "48858");
-                airNowUrl.searchParams.set("distance", "50");
+            
                 airNowUrl.searchParams.set("API_KEY", env.AIRNOW_API_KEY);
 
                 const response = await fetch(airNowUrl.toString(), {
