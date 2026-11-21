@@ -25,7 +25,7 @@ export default {
                 airNowUrl.searchParams.set("distance", "50");
                 airNowUrl.searchParams.set("API_KEY", env.AIRNOW_API_KEY);
 
-                const response = await fetch(airNowUrl);
+                const response = await fetch(airNowUrl.toString());
 
                 if (!response.ok) {
                     throw new Error(`AirNow returned ${response.status}`);
