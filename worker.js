@@ -22,8 +22,11 @@ export default {
 
                 airNowUrl.searchParams.set("format", "application/json");
                 airNowUrl.searchParams.set("zipCode", "48858");
-            
                 airNowUrl.searchParams.set("API_KEY", env.AIRNOW_API_KEY);
+                console.log(
+                    "AirNow key length:",
+                    env.AIRNOW_API_KEY.trim().length
+                );
 
                 const response = await fetch(airNowUrl.toString(), {
                     redirect: "manual",
