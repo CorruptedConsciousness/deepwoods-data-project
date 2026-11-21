@@ -32,8 +32,16 @@ export default {
                 console.log("AirNow redirected:", response.redirected);
                 console.log("AirNow content type:", response.headers.get("content-type"));
 
-                if (response.status >= 300 && response.status < 400) {
-                    throw new Error(`AirNow redirected: HTTP ${response.status}`);
+               if (response.status >= 300 && response.status < 400) {
+                    const location = response.headers.get("Location");
+
+                    const destination = location
+                        ? new URL(location, airNowUrl).origin
+                        : "Unknown";
+
+                    throw new Error(
+                        `AirNow redirected: HTTP ${response.status} to ${destination}`
+                    );
                 }
                 if (!response.ok) {
                     throw new Error(`AirNow returned ${response.status}`);
