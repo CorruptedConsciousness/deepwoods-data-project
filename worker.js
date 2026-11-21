@@ -50,8 +50,17 @@ export default {
         );
 
                 return Response.json(
-                    { error: "Air quality data unavailable" },
-                    { status: 502 }
+                    {
+                        error: "Air quality data unavailable",
+                        diagnostic: error.message,
+                        type: error.name
+                    },
+                    {
+                        status: 502,
+                        headers: {
+                            "Cache-Control": "no-store"
+                        }
+                    }
                 );
             }
         }
