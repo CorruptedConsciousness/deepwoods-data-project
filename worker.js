@@ -26,6 +26,9 @@ export default {
                 airNowUrl.searchParams.set("API_KEY", env.AIRNOW_API_KEY);
 
                 const response = await fetch(airNowUrl.toString());
+                console.log("AirNow final URL:", response.url);
+                console.log("AirNow redirected:", response.redirected);
+                console.log("AirNow content type:", response.headers.get("content-type"));
 
                 if (!response.ok) {
                     throw new Error(`AirNow returned ${response.status}`);
