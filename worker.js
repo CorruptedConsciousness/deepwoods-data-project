@@ -17,7 +17,7 @@ export default {
                 }
 
                 const airNowUrl = new URL(
-                    "https://www.airnowapi.org/aqi/observation/current/zipCode/"
+                    "https://www.airnowapi.org/aqi/observation/current/ziplatlong/"
                 );
 
                 airNowUrl.searchParams.set("format", "application/json");
@@ -26,7 +26,10 @@ export default {
                 airNowUrl.searchParams.set("API_KEY", env.AIRNOW_API_KEY);
 
                 const response = await fetch(airNowUrl.toString(), {
-                    redirect: "manual"
+                    redirect: "manual",
+                    headers: {
+                        "Accept": "application/json"
+                    }
                 });
                 console.log("AirNow final URL:", response.url);
                 console.log("AirNow redirected:", response.redirected);
