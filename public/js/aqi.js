@@ -1,17 +1,12 @@
 // Deepwoods Data Project
-// Regional Air Quality Monitoring
-// Data source: EPA AirNow
+// EPA AirNow Air Quality Monitoring
 
-const AQI_ENDPOINT = "/api/air-quality";
-
-async function fetchAirQuality() {
+async function updateAirQuality() {
     const status = document.getElementById("aqi-status");
-    const container = document.getElementById("aqi-data");
-
-    status.textContent = "Retrieving EPA AirNow observations...";
+    const display = document.getElementById("aqi-data");
 
     try {
-        const response = await fetch(AQI_ENDPOINT);
+        const response = await fetch("/api/air-quality");
 
         if (!response.ok) {
             throw new Error(`AQI request failed: ${response.status}`);
@@ -20,34 +15,27 @@ async function fetchAirQuality() {
         const observations = await response.json();
 
         if (!Array.isArray(observations) || observations.length === 0) {
-            status.textContent =
-                "No current AirNow observations available.";
-            container.innerHTML = "";
+            status.textContent = "No current air quality observations available.";
             return;
         }
 
-        status.textContent =
-            "EPA AirNow — Mount Pleasant regional observations";
+        status.textContent = "Current AirNow observations — Mt Pleasant, Michigan";
 
-        container.innerHTML = observations.map(observation => `
-            <div>
-                <strong>${observation.ParameterName}</strong>
-                <p>AQI: ${observation.AQI ?? "Unavailable"}</p>
-                <p>Category: ${observation.Category?.Name ?? "Unknown"}</p>
-                <p>Reporting Area: ${observation.ReportingArea ?? "Unknown"}</p>
-                <p>Observed: ${observation.DateObserved ?? "Unknown"}
-                    ${observation.HourObserved ?? ""}:00
-                    ${observation.LocalTimeZone ?? ""}
-                </p>
+       display.innerHTML = observations.map(observation => `
+            <div class="aqi-reading">
+                <h3>${observation.parameterName}</h3>
+                <p>AQI: ${observation.nowcastAQI ?? "Unavailable"}</p>
+                <p>Category: ${observation.aqiCategoryName ?? "Unknown"}</p>
+                <p>Reporting Area: ${observation.reportingAreaName ?? "Unknown"}</p>
+                <p>Monitoring Site: ${observation.siteName ?? "Unknown"}</p>
+                <p>Observed: ${observation.hourObserved ?? "Unknown"} ${observation.localTimeZone ?? ""}</p>
             </div>
-        `).join("");
+`       ).join("");
 
     } catch (error) {
-        console.error("DDP Air Quality Error:", error);
-
-        status.textContent =
-            "Air quality observations temporarily unavailable.";
+        console.error("DDP AQI error:", error);
+        status.textContent = "Air quality observations temporarily unavailable.";
     }
 }
 
-fetchAirQuality();
+updateAirQuality();
