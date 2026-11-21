@@ -17,7 +17,7 @@ export default {
                 }
 
                 const airNowUrl = new URL(
-                    "https://www.airnowapi.org/aqi/observation/current/ziplatlong/"
+                    "https://www.airnowapi.org/aq/observation/current/ziplatlong/"
                 );
 
                 airNowUrl.searchParams.set("format", "application/json");
