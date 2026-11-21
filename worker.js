@@ -31,7 +31,19 @@ export default {
                     throw new Error(`AirNow returned ${response.status}`);
                 }
 
-                const data = await response.json();
+                const rawResponse = await response.text();
+
+                console.log("AirNow response status:", response.status);
+                console.log("AirNow content type:",
+                    response.headers.get("content-type"));
+
+                if (rawResponse.trimStart().startsWith("<")) {
+                    throw new Error(
+                        `AirNow returned HTML instead of JSON (HTTP ${response.status})`
+                    );
+                }
+
+const data = JSON.parse(rawResponse);
 
                 return Response.json(data, {
                     headers: {
