@@ -17,7 +17,7 @@ export default {
                 }
 
                 const airNowUrl = new URL(
-                    "https://www.airnowapi.org/aqi/observation/zipCode/current/"
+                    "https://www.airnowapi.org/aqi/observation/zipCode/zipCode/"
                 );
 
                 airNowUrl.searchParams.set("format", "application/json");
