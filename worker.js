@@ -25,16 +25,22 @@ export default {
                 airNowUrl.searchParams.set("distance", "50");
                 airNowUrl.searchParams.set("API_KEY", env.AIRNOW_API_KEY);
 
-                const response = await fetch(airNowUrl.toString());
+                const response = await fetch(airNowUrl.toString(), {
+                    redirect: "manual"
+                });
                 console.log("AirNow final URL:", response.url);
                 console.log("AirNow redirected:", response.redirected);
                 console.log("AirNow content type:", response.headers.get("content-type"));
 
+                if (response.status >= 300 && response.status < 400) {
+                    throw new Error(`AirNow redirected: HTTP ${response.status}`);
+                }
                 if (!response.ok) {
                     throw new Error(`AirNow returned ${response.status}`);
                 }
 
                 const rawResponse = await response.text();
+                console.log("AirNow response preview:", rawResponse.slice(0, 300));
 
                 console.log("AirNow response status:", response.status);
                 console.log("AirNow content type:",
