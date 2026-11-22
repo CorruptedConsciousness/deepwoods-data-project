@@ -19,7 +19,7 @@ async function updateAirQuality() {
             return;
         }
 
-        status.textContent = "Current AirNow observations — Mt Pleasant, Michigan";
+        status.textContent = "EPA AirNow — Regional Air Quality Monitoring";
 
        display.innerHTML = observations.map(observation => `
             <div class="aqi-reading">
