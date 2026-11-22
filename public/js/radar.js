@@ -46,7 +46,7 @@ async function loadRadar() {
         radarHost = data.host;
         radarFrameIndex = frames.length - 1;
 
-        radarLayer = L.tileLayer(0
+        radarLayer = L.tileLayer(
             `${data.host}${latestFrame.path}/256/{z}/{x}/{y}/2/1_1.png`,
             {
                 opacity: 0.7,
@@ -72,7 +72,12 @@ async function loadRadar() {
     }
 }
 
+    // Show loading status before fetching radar data
+document.getElementById("radar-status").textContent =
+    "Loading radar imagery...";
+
 loadRadar();
+
 // Mark the research area
 L.circleMarker([RADAR_LAT, RADAR_LON], {
     radius: 6,
@@ -83,9 +88,6 @@ L.circleMarker([RADAR_LAT, RADAR_LON], {
 .addTo(radarMap)
 .bindPopup("Deepwoods Data Project — Gladwin, Michigan");
 
-// Update status
-document.getElementById("radar-status").textContent =
-    "Interactive regional map loaded.";
 
     // Display a specific radar frame
 function showRadarFrame(index) {
