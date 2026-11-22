@@ -46,7 +46,7 @@ async function loadRadar() {
         radarHost = data.host;
         radarFrameIndex = frames.length - 1;
 
-        radarLayer = L.tileLayer(
+        radarLayer = L.tileLayer(0
             `${data.host}${latestFrame.path}/256/{z}/{x}/{y}/2/1_1.png`,
             {
                 opacity: 0.7,
