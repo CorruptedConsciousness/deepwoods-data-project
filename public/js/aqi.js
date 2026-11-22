@@ -26,7 +26,7 @@ async function updateAirQuality() {
                 <h3>${observation.parameterName}</h3>
                 <p>AQI: ${observation.nowcastAQI ?? "Unavailable"}</p>
                 <p>Category: ${observation.aqiCategoryName ?? "Unknown"}</p>
-                <p>Reporting Area: ${observation.reportingAreaName ?? "Unknown"}</p>
+                
                 <p>Monitoring Site: ${observation.siteName ?? "Unknown"}</p>
                 <p>Observed: ${observation.hourObserved ?? "Unknown"} ${observation.localTimeZone ?? ""}</p>
             </div>
