@@ -6,6 +6,42 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
 
+       // Handle visitor counter requests
+if (url.pathname === "/api/visitors") {
+    try {
+        const current = Number(
+            await env.DDP_Visitors.get("visitor_count") ?? "0"
+        );
+
+        const cookies = request.headers.get("Cookie") || "";
+const alreadyVisited = cookies
+    .split(";")
+    .some(cookie => cookie.trim() === "ddp_visited=1");
+
+const next = alreadyVisited ? current : current + 1;
+
+        if (!alreadyVisited) {
+    await env.DDP_Visitors.put("visitor_count", String(next));
+}
+
+        return Response.json(
+    { count: next },
+    {
+        headers: {
+            "Cache-Control": "no-store",
+            "Set-Cookie": "ddp_visited=1; Max-Age=86400; Path=/; Secure; SameSite=Lax"
+        }
+    }
+);
+    } catch (error) {
+        console.error("Visitor counter error:", error);
+
+        return Response.json(
+            { error: "Visitor count unavailable" },
+            { status: 500 }
+        );
+    }
+}
         // Handle air quality API requests
         if (url.pathname === "/api/air-quality") {
             try {

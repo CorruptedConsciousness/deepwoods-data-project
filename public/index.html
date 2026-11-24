@@ -70,6 +70,33 @@
             Awaiting air quality data...
         </div>
     </section>
+    <div class="visitor-counter">
+  <span>VISITORS</span>
+  <div class="counter-digits" id="visitor-count">00000000</div>
+</div>
+<script>
+async function loadVisitorCount() {
+    try {
+        const response = await fetch("/api/visitors", {
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error("Counter unavailable");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("visitor-count").textContent =
+            String(data.count).padStart(8, "0");
+
+    } catch (error) {
+        console.error("Visitor counter:", error);
+    }
+}
+
+loadVisitorCount();
+</script>
     <footer>© 2026 Deepwoods Data Project · From the deepwoods of Michigan</footer>
   </main>
 <script src="https://cdn.jsdelivr.net/npm/suncalc@1.9.0/suncalc.js"></script>

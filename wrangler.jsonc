@@ -1,10 +1,16 @@
 {
-    "name": "deepwoods-data-project",
-    "compatibility_date": "2026-11-21",
-    "main": "./worker.js",
-    "assets": {
-      "binding": "ASSETS", 
-      "directory": "./public",
-        "not_found_handling": "404-page"
+  "name": "deepwoods-data-project",
+  "compatibility_date": "2026-11-21",
+  "main": "./worker.js",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DDP_Visitors",
+      "id": "31e38be19f0d410bbd150a568728f416"
     }
+  ]
 }

@@ -318,3 +318,28 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+.visitor-counter {
+  text-align: center;
+  margin: 24px 0 12px;
+  font-family: monospace;
+}
+
+.visitor-counter span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #8cae91;
+  margin-bottom: 8px;
+}
+
+.counter-digits {
+  display: inline-block;
+  background: #071009;
+  color: #70ed8a;
+  font-size: 26px;
+  letter-spacing: 5px;
+  padding: 8px 12px;
+  border: 1px solid #365b40;
+  border-radius: 4px;
+  text-shadow: 0 0 8px #287c39;
+}
